@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calibration</title>
+</head>
+<body>
+
+<h2>Sensor Calibration</h2>
+
+<div id="container"></div>
+
+<button onclick="save()">Save</button>
+
+<script>
+
+let calibration = {};
+
+fetch('/api/calibration')
+  .then(r => r.json())
+  .then(data => {
+    calibration = data;
+    render();
+  });
+
+function render() {
+  let html = '';
+
+  for (let sensor in calibration) {
+
+    html += `<h3>${sensor}</h3>`;
+
+    for (let key in calibration[sensor]) {
+
+      html += `
+        ${key}:
+        <input
+          id="${sensor}-${key}"
+          value="${calibration[sensor][key]}"
+        ><br>
+      `;
+    }
+  }
+
+  document.getElementById("container").innerHTML = html;
+}
+
+function save() {
+
+  for (let sensor in calibration) {
+    for (let key in calibration[sensor]) {
+
+      calibration[sensor][key] =
+        parseFloat(document.getElementById(`${sensor}-${key}`).value);
+    }
+  }
+
+  fetch('/api/calibration', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(calibration)
+  });
+
+  alert("Saved!");
+}
+
+</script>
+
+</body>
+</html>

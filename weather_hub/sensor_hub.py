@@ -145,6 +145,8 @@ creds = Credentials.from_service_account_file(
 
 client = gspread.authorize(creds)
 
+#This where you need to enter the name of your google sheet to populate!!!  Replace "ESP32 Weather Data"
+#  with the name of the sheet you created!!!
 sheet = client.open("ESP32 Weather Data").sheet1
 
 #Google Sheets Function

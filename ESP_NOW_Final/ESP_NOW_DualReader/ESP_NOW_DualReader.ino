@@ -20,6 +20,20 @@ Adafruit_BME280 bme2;
 char SENSOR1_ID[] = "board1";
 char SENSOR2_ID[] = "board2";
 
+// Need to pull this out, the calibration is done on the pi side now
+// Sensor 1 calibration
+
+float TEMP1_OFFSET = 0.0;
+float HUM1_OFFSET  = 0.0;
+float PRES1_OFFSET = 0.0;
+
+// Sensor 2 caliibration
+
+
+float TEMP2_OFFSET = 0.0;
+float HUM2_OFFSET  = 0.0;
+float PRES2_OFFSET = 0.0;
+
 // GATEWAY MAC
 
 // You'll need to pull the MAC of the gateway ESP32 and enter it below.  I left a MAC,
@@ -67,9 +81,9 @@ void OnDataSent(
 void sendSensor(
     Adafruit_BME280 &bme,
     const char *sensorID,
-    float temp,
-    float hum,
-    float pressure
+    float tempOffset,
+    float humOffset,
+    float presOffset
 ) {
 
   float tempC = bme.readTemperature();
@@ -80,6 +94,10 @@ void sendSensor(
 
   float pressure =
       bme.readPressure() / 100.0F;
+  
+    tempF += tempOffset;
+  humidity += humOffset;
+  pressure += presOffset;
   
   strcpy(sensorData.sensor, sensorID);
 

@@ -15,7 +15,7 @@ readers and let the sensors run next to each other for a bit.  You can view the 
 TFT screen, or in a web browser at the IP of the pi, on port 5000.  For example, it the IP shown on 
 the TFT screen reads 192.168.1.12, then in a browser, on a machine on the same network, enter
 
-http://1982.168.1.12:5000 
+http://192.168.1.12:5000 
 
 Here you will see the dashboard of sensors.  After letting them run for a while, you can
 equalize them by entering values into the claibration page at 

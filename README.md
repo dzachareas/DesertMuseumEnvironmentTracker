@@ -34,4 +34,15 @@ https://cdn-learn.adafruit.com/downloads/pdf/gdocs-sensor-logging-from-your-pc.p
 And start on page 5, or view the whole document as it is a fun read and very interesting.  Plus, you can
 see where I got some pieces for this project!  Adafruit is the best!
 
+python libraries to install
+```
+pip3 install pyserial
+pip3 install flask
+pip3 install gspread
+pip3 install luma.core
+pip3 install luma.core[gpio]
+pip3 install --upgrade luma.lcd
+pip3 install pygame
+```
+
 
